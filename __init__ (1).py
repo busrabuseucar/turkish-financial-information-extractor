@@ -1,0 +1,1 @@
+Bereket Konut Finansmanı kampanyası kapsamında yeni müşterilere 2.500.000 TL'ye kadar, 120 ay vadeli ve %3,19 kâr payı oranlı finansman sunulmaktadır. Tahsis ücreti 5.000 TL'dir. Kampanya 31.12.2026 tarihine kadar geçerlidir.

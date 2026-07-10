@@ -1,0 +1,58 @@
+import re
+from decimal import Decimal, InvalidOperation
+
+
+_TURKISH_MONTHS = {
+    "ocak": "01", "şubat": "02", "mart": "03", "nisan": "04",
+    "mayıs": "05", "haziran": "06", "temmuz": "07", "ağustos": "08",
+    "eylül": "09", "ekim": "10", "kasım": "11", "aralık": "12",
+}
+
+
+def normalize_number(raw: str) -> str:
+    cleaned = raw.strip().replace("₺", "").replace("TL", "").replace("tl", "")
+    cleaned = re.sub(r"\s+", "", cleaned)
+    if "," in cleaned and "." in cleaned:
+        cleaned = cleaned.replace(".", "").replace(",", ".")
+    elif "," in cleaned:
+        cleaned = cleaned.replace(",", ".")
+    else:
+        parts = cleaned.split(".")
+        if len(parts) > 1 and all(len(p) == 3 for p in parts[1:]):
+            cleaned = "".join(parts)
+    try:
+        value = Decimal(cleaned)
+    except InvalidOperation:
+        return raw.strip()
+    return format(value.normalize(), "f")
+
+
+def normalize_percentage(raw: str) -> str:
+    match = re.search(r"%\s*([0-9]+(?:[.,][0-9]+)?)|([0-9]+(?:[.,][0-9]+)?)\s*%", raw)
+    if not match:
+        return raw.strip()
+    number = match.group(1) or match.group(2)
+    return f"%{normalize_number(number)}"
+
+
+def normalize_maturity(raw: str) -> str:
+    match = re.search(r"(\d+)\s*(ay|yıl|gun|gün)", raw.lower())
+    if not match:
+        return raw.strip()
+    value, unit = match.groups()
+    unit_map = {"ay": "month", "yıl": "year", "gun": "day", "gün": "day"}
+    return f"{value} {unit_map[unit]}"
+
+
+def normalize_date(raw: str) -> str:
+    text = raw.lower().strip()
+    for month, month_number in _TURKISH_MONTHS.items():
+        match = re.search(rf"(\d{{1,2}})\s+{month}\s+(\d{{4}})", text)
+        if match:
+            day, year = match.groups()
+            return f"{year}-{month_number}-{int(day):02d}"
+    match = re.search(r"(\d{1,2})[./-](\d{1,2})[./-](\d{4})", text)
+    if match:
+        day, month, year = match.groups()
+        return f"{year}-{int(month):02d}-{int(day):02d}"
+    return raw.strip()

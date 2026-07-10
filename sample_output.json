@@ -1,0 +1,30 @@
+{"id": 1, "text": "Yeni müşterilere özel 500.000 TL'ye kadar 24 ay vadeli ve %2,89 kâr payı oranlı finansman sunulmaktadır.", "expected": {"financing_amount": "500000", "maturity": "24 month", "profit_rate": "%2.89", "target_audience": "yeni müşterilere"}}
+{"id": 2, "text": "KOBİ'lere 1.250.000 TL finansman, azami 36 ay vade ve %3,10 oran ile sağlanır.", "expected": {"financing_amount": "1250000", "maturity": "36 month", "profit_rate": "%3.10", "target_audience": "KOBİ'lere"}}
+{"id": 3, "text": "Emeklilere yönelik kampanyada 100.000 TL'ye kadar 12 ay vadeli masrafsız finansman vardır.", "expected": {"financing_amount": "100000", "maturity": "12 month", "fee": "0", "target_audience": "Emeklilere"}}
+{"id": 4, "text": "Çiftçilere 750.000 TL tutarında, 18 ay vadeli ve %2,45 kâr paylı destek sunulur.", "expected": {"financing_amount": "750000", "maturity": "18 month", "profit_rate": "%2.45", "target_audience": "Çiftçilere"}}
+{"id": 5, "text": "Öğrencilere özel ürün kapsamında 25.000 TL, 6 ay vade ve ücretsiz tahsis imkânı sağlanır.", "expected": {"financing_amount": "25000", "maturity": "6 month", "fee": "0", "target_audience": "Öğrencilere"}}
+{"id": 6, "text": "Bireysel müşterilere 300.000 TL'ye kadar, 48 ay vadeli finansman verilir.", "expected": {"financing_amount": "300000", "maturity": "48 month", "target_audience": "Bireysel müşterilere"}}
+{"id": 7, "text": "Kampanya 15 Temmuz 2026 tarihine kadar geçerlidir ve tahsis ücreti 2.500 TL'dir.", "expected": {"campaign_period": "2026-07-15", "fee": "2500"}}
+{"id": 8, "text": "31.12.2026 tarihine kadar %3,19 kâr payı oranı uygulanacaktır.", "expected": {"campaign_period": "2026-12-31", "profit_rate": "%3.19"}}
+{"id": 9, "text": "Azami 60 ay vade ile 2.000.000 TL finansman sağlanır.", "expected": {"maturity": "60 month", "financing_amount": "2000000"}}
+{"id": 10, "text": "Masraf 1.250 TL olup oran %1,99'dur.", "expected": {"fee": "1250", "profit_rate": "%1.99"}}
+{"id": 11, "text": "Tahsis ücreti 0 TL, vade 9 ay ve toplam tutar 80.000 TL'dir.", "expected": {"fee": "0", "maturity": "9 month", "financing_amount": "80000"}}
+{"id": 12, "text": "Yeni müşterilere azami 1.000.000 TL, 120 ay ve %3,75 oran sunulur.", "expected": {"target_audience": "yeni müşterilere", "financing_amount": "1000000", "maturity": "120 month", "profit_rate": "%3.75"}}
+{"id": 13, "text": "Ürün yalnızca mobil kanaldan sunulmaktadır.", "expected": {}}
+{"id": 14, "text": "Kampanya 01/09/2026 tarihinde sona erer.", "expected": {"campaign_period": "2026-09-01"}}
+{"id": 15, "text": "21 yaşını doldurmuş bireysel müşteriler başvurabilir.", "expected": {"target_audience": "21 yaşını doldurmuş bireysel müşteriler başvurabilir"}}
+{"id": 16, "text": "Masrafsız ve 3 ay vadeli 10.000 TL finansman fırsatı.", "expected": {"fee": "0", "maturity": "3 month", "financing_amount": "10000"}}
+{"id": 17, "text": "Kar payı oranı %4,05, tahsis ücreti ise 750 TL'dir.", "expected": {"profit_rate": "%4.05", "fee": "750"}}
+{"id": 18, "text": "150.000 ₺'ye kadar 15 ay vadeli finansman sağlanmaktadır.", "expected": {"financing_amount": "150000", "maturity": "15 month"}}
+{"id": 19, "text": "KOBİ'lere yönelik 30 Haziran 2026 tarihine kadar geçerli kampanya.", "expected": {"target_audience": "KOBİ'lere", "campaign_period": "2026-06-30"}}
+{"id": 20, "text": "Emeklilere 50.000 TL ve 10 ay vade sunulur; ücret 500 TL'dir.", "expected": {"target_audience": "Emeklilere", "financing_amount": "50000", "maturity": "10 month", "fee": "500"}}
+{"id": 21, "text": "Çiftçilere %2,10 oranla 400.000 TL finansman sağlanır.", "expected": {"target_audience": "Çiftçilere", "profit_rate": "%2.10", "financing_amount": "400000"}}
+{"id": 22, "text": "Öğrencilere 12.500 TL tutarında 5 ay vadeli masrafsız destek.", "expected": {"target_audience": "Öğrencilere", "financing_amount": "12500", "maturity": "5 month", "fee": "0"}}
+{"id": 23, "text": "18 yaşını doldurmuş yeni müşteriler için 20.000 TL destek.", "expected": {"target_audience": "18 yaşını doldurmuş yeni müşteriler için 20.000 TL destek", "financing_amount": "20000"}}
+{"id": 24, "text": "Kampanya bitiş tarihi 10-10-2026, masraf 3.000 TL'dir.", "expected": {"campaign_period": "2026-10-10", "fee": "3000"}}
+{"id": 25, "text": "%0,99 kâr payı ile 250.000 TL'ye kadar ve 8 ay vadeli finansman.", "expected": {"profit_rate": "%0.99", "financing_amount": "250000", "maturity": "8 month"}}
+{"id": 26, "text": "Bireysel müşterilere yönelik ücretsiz ürün 7 ay vadeli olarak sunulur.", "expected": {"target_audience": "Bireysel müşterilere", "fee": "0", "maturity": "7 month"}}
+{"id": 27, "text": "Azami 1 yıl vade, 600.000 TL tutar ve %3,50 oran.", "expected": {"maturity": "1 year", "financing_amount": "600000", "profit_rate": "%3.50"}}
+{"id": 28, "text": "90 gün vadeli ve 5.000 TL masrafsız mikro finansman.", "expected": {"maturity": "90 day", "financing_amount": "5000", "fee": "0"}}
+{"id": 29, "text": "Kampanya 5 Mayıs 2026'ya kadar sürer.", "expected": {"campaign_period": "2026-05-05"}}
+{"id": 30, "text": "Ücret 1.000 ₺, finansman üst limiti 200.000 ₺'dir.", "expected": {"fee": "1000", "financing_amount": "200000"}}

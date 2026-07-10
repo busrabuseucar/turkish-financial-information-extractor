@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "turkish-financial-information-extractor"
+version = "0.2.0"
+description = "Auditable information extraction from Turkish banking and campaign texts"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Büşra Buse Uçar"}]
+
+[project.scripts]
+turfinextract = "turfinextract.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
