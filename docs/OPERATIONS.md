@@ -4,7 +4,7 @@ Son inceleme: **16 Ekim 2026**. Bu belge kurulum, veri akışı, sürüm kapıla
 
 ## Sürüm kanıtı
 
-- Denetlenen uygulama commit’i: `89fe97e11eca3392bf550258c12b037e9b575510`.
+- Denetlenen uygulama commit’i: `96c7fff8e20f35c819e109c3ef7d87ad4d445467`.
 - [Bu commit için başarılı CI kaydı](https://github.com/busrabuseucar/turkish-financial-information-extractor/actions/runs/38893811409).
 - Doğrulanan otomatik kapsam: 35 Python testi.
 - Testlerin gerçek servis, veri veya donanım yerine taklit kullandığı noktalar aşağıda açıkça ayrılmıştır.
