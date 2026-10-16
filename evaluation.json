@@ -1,0 +1,86 @@
+{
+  "scope": "synthetic development fixture; not held-out evaluation",
+  "examples": 30,
+  "dataset_sha256": "10526fc02e7cde21b1c0cef67cf315f7e1faa6bfbebeacfc3d10a6cdd0ff31e3",
+  "matching": "exact field values; original case preserved",
+  "micro": {
+    "tp": 77,
+    "fp": 2,
+    "fn": 2,
+    "precision": 0.9747,
+    "recall": 0.9747,
+    "f1": 0.9747
+  },
+  "per_field": {
+    "product_name": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0,
+      "recall": 0,
+      "f1": 0
+    },
+    "financing_amount": {
+      "tp": 19,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "profit_rate": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "maturity": {
+      "tp": 17,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "fee": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "target_audience": {
+      "tp": 12,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.8571,
+      "recall": 0.8571,
+      "f1": 0.8571
+    },
+    "campaign_period": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "mismatches": [
+    {
+      "id": 1,
+      "field": "target_audience",
+      "expected": "yeni müşterilere",
+      "actual": "Yeni müşterilere"
+    },
+    {
+      "id": 12,
+      "field": "target_audience",
+      "expected": "yeni müşterilere",
+      "actual": "Yeni müşterilere"
+    }
+  ]
+}

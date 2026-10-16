@@ -1,0 +1,27 @@
+name: Python checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: python -m pip install -e '.[api,demo,test]'
+      - run: python -m pytest -q
+      - run: python scripts/evaluate.py --output evaluation-ci.json
+      - run: python -m pip wheel --no-deps . --wheel-dir dist
+      - run: python -m pip install --force-reinstall --no-deps dist/*.whl
+      - name: Installed package smoke test
+        working-directory: /tmp
+        run: turfinextract '120 ay vadeli ve %3,19 kâr payı'

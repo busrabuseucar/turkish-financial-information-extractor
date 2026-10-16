@@ -1,0 +1,51 @@
+{
+  "product_name": {
+    "value": "Bereket Konut Finansmanı",
+    "source_text": "Bereket Konut Finansmanı",
+    "start": 0,
+    "end": 24,
+    "confidence": 0.82
+  },
+  "financing_amount": {
+    "value": "2500000",
+    "source_text": "2.500.000 TL",
+    "start": 64,
+    "end": 76,
+    "confidence": 0.9
+  },
+  "profit_rate": {
+    "value": "%3.19",
+    "source_text": "%3,19",
+    "start": 104,
+    "end": 109,
+    "confidence": 0.94
+  },
+  "maturity": {
+    "value": "120 month",
+    "source_text": "120 ay",
+    "start": 87,
+    "end": 93,
+    "confidence": 0.91
+  },
+  "fee": {
+    "value": "5000",
+    "source_text": "5.000 TL",
+    "start": 165,
+    "end": 173,
+    "confidence": 0.88
+  },
+  "target_audience": {
+    "value": "yeni müşterilere",
+    "source_text": "yeni müşterilere",
+    "start": 47,
+    "end": 63,
+    "confidence": 0.76
+  },
+  "campaign_period": {
+    "value": "2026-12-31",
+    "source_text": "31.12.2026",
+    "start": 188,
+    "end": 198,
+    "confidence": 0.87
+  }
+}

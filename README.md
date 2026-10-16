@@ -1,173 +1,102 @@
 # Turkish Financial Information Extractor
 
-A compact, auditable NLP project that extracts structured information from Turkish banking, financing, and campaign texts.
+Türkçe finansal ürün metinlerini kaynak kanıtıyla yapılandırılmış JSON'a dönüştüren Python projesi. Finansman tutarı, kâr payı/faiz oranı, vade, ücret, hedef kitle, ürün adı ve kampanya tarihi için kural tabanlı çıkarım yapar.
 
-The project focuses on a practical problem: financial product information is frequently published as unstructured prose, while comparison and decision-support systems require normalized fields.
+Her bulunan alan normalize değer, özgün metin, başlangıç/bitiş konumu ve sezgisel güven puanı içerir. Desteklenen kurallarla bulunamayan veya çelişen alanlar null döner. Çekirdek harici servis çağırmaz; API anahtarı gerekmez.
 
-## Why this project exists
+## Kurulum
 
-A naive language-model prompt can produce plausible JSON, but it can also invent values. This project takes a stricter approach:
+Python 3.10 veya üzeri:
 
-- Every extracted value is linked to its source span.
-- Missing information remains `null` instead of being guessed.
-- Numeric, percentage, maturity, and date values are normalized.
-- Confidence scores are returned with each field.
-- The code is modular and testable.
-
-## Extracted fields
-
-- Product name
-- Financing amount
-- Profit rate
-- Maturity
-- Fee
-- Target audience
-- Campaign period
-
-## Architecture
-
-```text
-Turkish financial text
-        ↓
-Pattern and context detection
-        ↓
-Field-specific normalization
-        ↓
-Evidence span + confidence score
-        ↓
-Auditable JSON record
-```
-
-## Example
-
-Input:
-
-```text
-Bereket Konut Finansmanı kampanyası kapsamında yeni müşterilere 2.500.000 TL'ye kadar, 120 ay vadeli ve %3,19 kâr payı oranlı finansman sunulmaktadır. Tahsis ücreti 5.000 TL'dir. Kampanya 31.12.2026 tarihine kadar geçerlidir.
-```
-
-Output excerpt:
-
-```json
-{
-  "financing_amount": {
-    "value": "2500000",
-    "source_text": "2.500.000 TL",
-    "confidence": 0.90
-  },
-  "profit_rate": {
-    "value": "%3.19",
-    "source_text": "%3,19",
-    "confidence": 0.94
-  },
-  "maturity": {
-    "value": "120 month",
-    "source_text": "120 ay",
-    "confidence": 0.91
-  }
-}
-```
-
-
-## What is included in v0.2
-
-- Evidence-linked rule-based extraction
-- 30-example labeled benchmark set
-- Field-level evaluation script with Precision, Recall, and F1
-- FastAPI service with `/health` and `/extract` endpoints
-- Streamlit demo with JSON export and evidence table
-- Unit and API tests
-
-## Run the benchmark
-
-```bash
-python scripts/evaluate.py --data data/benchmark.jsonl
-```
-
-The benchmark is intentionally small and transparent. It is a project validation set, not a claim of production-grade model performance.
-
-## Run the REST API
-
-```bash
-uvicorn app.api:app --reload
-```
-
-Open the automatically generated API documentation at `http://127.0.0.1:8000/docs`.
-
-## Run the Streamlit demo
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
-## Installation
-
-```bash
-git clone https://github.com/YOUR_USERNAME/turkish-financial-information-extractor.git
+~~~bash
+git clone https://github.com/busrabuseucar/turkish-financial-information-extractor.git
 cd turkish-financial-information-extractor
 python -m venv .venv
-```
+~~~
 
-Windows:
+Linux/macOS: source .venv/bin/activate
 
-```bash
-.venv\Scripts\activate
-```
+Windows PowerShell: .venv\Scripts\Activate.ps1
 
-Linux/macOS:
+~~~bash
+python -m pip install -e ".[api,demo,test]"
+~~~
 
-```bash
-source .venv/bin/activate
-```
+Yalnızca çıkarıcı ve CLI için python -m pip install -e . yeterlidir. requirements.txt tam geliştirme kurulumunun kısa yoludur. Python 3.12/Linux doğrulamasında kullanılan sürümler constraints-py312.txt içindedir; aynı ortamda kurmak için:
 
-Then:
+~~~bash
+python -m pip install -c constraints-py312.txt -e ".[api,demo,test]"
+~~~
 
-```bash
-pip install -e .
-pip install -r requirements.txt
-```
+## Kullanım
 
-## Usage
+~~~bash
+turfinextract "120 ay vadeli ve %3,19 kâr payı oranlı finansman"
+~~~
 
-```bash
-turfinextract "120 ay vadeli, %3,19 kâr payı oranlı ve 2.500.000 TL'ye kadar finansman"
-```
-
-Or from Python:
-
-```python
+~~~python
 from turfinextract import FinancialInformationExtractor
 
-text = "120 ay vadeli ve %3,19 kâr payı oranlı finansman"
-record = FinancialInformationExtractor().extract(text)
+record = FinancialInformationExtractor().extract(
+    "Tahsis ücreti 2.500 TL, finansman limiti 200.000 TL."
+)
 print(record.to_dict())
-```
+~~~
 
-## Tests
+Bu örnekte fee değeri 2500, financing_amount değeri 200000 olur. Tam bir giriş ve gerçek CLI çıktısı examples/sample.txt ve examples/sample_output.json dosyalarındadır.
 
-```bash
-pytest
-```
+## Arayüzler
 
-## Current limitations
+Komutları depo kökünde çalıştır:
 
-- The first version uses interpretable rules instead of a trained transformer model.
-- Ambiguous product names and long cross-sentence dependencies may require a model-based layer.
-- Confidence scores are heuristic and should later be calibrated on a labeled dataset.
+~~~bash
+python -m uvicorn app.api:app --reload
+~~~
 
-## Roadmap
+API dokümantasyonu: http://127.0.0.1:8000/docs
 
-- Add a labeled Turkish financial-product dataset.
-- Compare rule-based, transformer, and LLM-assisted extraction.
-- Add field-level Precision, Recall, and F1 metrics.
-- Add URL, retrieval date, and document-version metadata.
-- Add a lightweight REST API and dashboard.
-- Add optional local-LLM validation without sending data to external services.
+GET /health sağlık kontrolü; POST /extract gövdesi: {"text": "120 ay vadeli finansman"}.
 
-## Ethics and reliability
+~~~bash
+python -m streamlit run app/streamlit_app.py
+~~~
 
-This project does not generate financial advice. It structures publicly available product information and keeps evidence attached to every extracted value. Users should verify critical details from the original source.
+Streamlit metin girişi, kanıt tablosu ve JSON indirme sunar. API ve demo yerel geliştirme içindir; internete açık servis için kimlik doğrulama ve hız sınırlama ayrıca gerekir.
 
-## License
+## Veri sözleşmesi
 
-MIT
+| Alan | Normalize değer örneği |
+|---|---|
+| product_name | Bereket Konut Finansmanı |
+| financing_amount | 2500000 |
+| profit_rate | %3.19 |
+| maturity | 120 month |
+| fee | 5000 |
+| target_audience | yeni müşterilere |
+| campaign_period | 2026-12-31 |
+
+Değerler string olarak döner. start dahil, end hariç Python karakter indeksidir; text[start:end] kaynak metinle eşleşir. Para için Decimal, tarihler için takvim doğrulaması kullanılır. Girdi sınırı 20.000 karakterdir. Güven puanı ölçülmüş doğruluk olasılığı değildir.
+
+## Doğrulama
+
+~~~bash
+python -m pytest -q
+python scripts/evaluate.py --output evaluation.json
+~~~
+
+Python 3.12 temiz sanal ortamında **35 test geçti**: çıkarım/normalizasyon, kanıt konumları, eksik/çelişkili girdiler, API–CLI tutarlılığı, hatalı istekler ve Streamlit çıkarım akışı. CI dosyası Python 3.10 ve 3.12 üzerinde test, değerlendirme ve kurulabilir wheel kontrolü çalıştırır.
+
+30 örneklik orijinal **sentetik geliştirme verisinde** tam alan değeri eşleştirmesiyle micro precision/recall/F1: **0.9747**. İki uyuşmazlık hedef kitle değerinin büyük/küçük harf farkıdır. Veri kümesinde pozitif ürün adı örneği yoktur; bu alanın başarısı bu veriyle ölçülmüş değildir. Tüm sayımlar ve uyuşmazlıklar [evaluation.json](evaluation.json) içindedir. Bu sonuç bağımsız test veya üretim doğruluğu iddiası değildir.
+
+## Kapsam ve sınırlar
+
+Tek ürün metni varsayılır. Tüm Türkçe ifadeler, olumsuzluklar, tarih aralıkları ve çoklu ürün karşılaştırmaları desteklenmez. Ücret bağlamı dışındaki para değerleri finansman adayı sayılır; gelir/bakiye ayrımı yapılmaz. Tek bir tarih çıkarılması, tarihin mutlaka kampanya bitişi olduğunu garanti etmez. Kritik değerler kaynak metinden doğrulanmalıdır.
+
+- [Teknik kararlar ve mülakat notları](docs/INTERVIEW.md)
+- [Dosya düzeni onarım kaydı](docs/RECOVERY.md)
+
+Sonraki adımlar: bağımsız etiketli veri, olumsuzluk/çoklu ürün çözümleme, alan bazlı hata nedenleri ve güven puanı kalibrasyonu.
+
+## Lisans
+
+MIT — [LICENSE](LICENSE).

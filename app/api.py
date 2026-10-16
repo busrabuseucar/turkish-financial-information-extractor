@@ -5,7 +5,7 @@ from turfinextract import FinancialInformationExtractor
 
 app = FastAPI(
     title="Turkish Financial Information Extractor API",
-    version="0.2.0",
+    version="0.3.0",
     description="Auditable extraction of structured fields from Turkish financial texts.",
 )
 
@@ -13,7 +13,7 @@ extractor = FinancialInformationExtractor()
 
 
 class ExtractionRequest(BaseModel):
-    text: str = Field(..., min_length=1, examples=["120 ay vadeli, %3,19 kâr payı oranlı finansman"])
+    text: str = Field(..., min_length=1, max_length=20000, examples=["120 ay vadeli, %3,19 kâr payı oranlı finansman"])
 
 
 @app.get("/health")

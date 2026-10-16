@@ -1,21 +1,27 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "turkish-financial-information-extractor"
-version = "0.2.0"
-description = "Auditable information extraction from Turkish banking and campaign texts"
+version = "0.3.0"
+description = "Evidence-linked rule-based extraction from Turkish financial texts"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
 authors = [{name = "Büşra Buse Uçar"}]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1"]
+demo = ["streamlit>=1.49,<2"]
+test = ["pytest>=8,<10", "httpx>=0.27,<1"]
 
 [project.scripts]
 turfinextract = "turfinextract.cli:main"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
