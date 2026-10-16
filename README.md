@@ -100,3 +100,7 @@ Sonraki adımlar: bağımsız etiketli veri, olumsuzluk/çoklu ürün çözümle
 ## Lisans
 
 MIT — [LICENSE](LICENSE).
+
+## İşletim
+
+[İşletim ve sürüm doğrulama](docs/OPERATIONS.md) — kurulum, veri saklama, yayın, geri dönüş ve doğrulama kapsamı.
