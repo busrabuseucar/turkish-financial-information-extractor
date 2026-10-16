@@ -92,7 +92,7 @@ Python 3.12 temiz sanal ortamında **35 test geçti**: çıkarım/normalizasyon,
 
 Tek ürün metni varsayılır. Tüm Türkçe ifadeler, olumsuzluklar, tarih aralıkları ve çoklu ürün karşılaştırmaları desteklenmez. Ücret bağlamı dışındaki para değerleri finansman adayı sayılır; gelir/bakiye ayrımı yapılmaz. Tek bir tarih çıkarılması, tarihin mutlaka kampanya bitişi olduğunu garanti etmez. Kritik değerler kaynak metinden doğrulanmalıdır.
 
-- [Teknik kararlar ve mülakat notları](docs/INTERVIEW.md)
+- [Teknik Tasarım ve Kararlar](docs/TECHNICAL_DESIGN.md)
 - [Dosya düzeni onarım kaydı](docs/RECOVERY.md)
 
 Sonraki adımlar: bağımsız etiketli veri, olumsuzluk/çoklu ürün çözümleme, alan bazlı hata nedenleri ve güven puanı kalibrasyonu.

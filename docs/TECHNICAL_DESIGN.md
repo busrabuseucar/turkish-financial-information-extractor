@@ -1,4 +1,4 @@
-# Teknik anlatım ve kararlar
+# Teknik Tasarım ve Kararlar
 
 Türkçe finansal kampanya metnindeki yedi alanı kaynak metindeki konumlarıyla JSON'a dönüştüren deterministik bir çıkarıcı. Çekirdek Python paketi harici servis veya model çağırmaz. CLI, FastAPI ve Streamlit aynı çıkarıcıyı kullanır.
 
